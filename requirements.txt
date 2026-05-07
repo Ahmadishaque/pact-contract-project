@@ -1,3 +1,4 @@
-pact-python==2.2.1
+pact-python==1.6.0
 pytest
 requests
+flask

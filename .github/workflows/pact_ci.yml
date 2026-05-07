@@ -14,7 +14,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pact-python==2.2.1 pytest requests
+          pip uninstall -y pact
+          pip install -r requirements.txt
 
       - name: Run Consumer Test
         run: |
@@ -28,9 +29,9 @@ jobs:
 
       - name: Run Provider Verification
         run: |
-          # 1. Start the Flask app in the background
-          python app_provider.py & 
-          # 2. Wait a few seconds for it to boot
-          sleep 5 
-          # 3. Run the verification test
+          # Start the Flask app and redirect logs to a file so it doesn't hang
+          python app_provider.py > provider_logs.txt 2>&1 & 
+          # Give it a bit more time to spin up
+          sleep 10
+          # Run the verification
           pytest tests/test_provider.py
