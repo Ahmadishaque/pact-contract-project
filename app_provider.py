@@ -8,7 +8,7 @@ def get_user():
     # To pass: this must match the contract exactly!
     return jsonify({
         'id': 1,
-        'name': 'Ahmad Ishaque'
+        'full_name': 'Ahmad Ishaque'
     })
 
 if __name__ == '__main__':
